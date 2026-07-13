@@ -517,27 +517,70 @@
       box-shadow: var(--shadow);
     }
 
-    .cert-badge {
+    .about-visual {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 20px;
+      position: relative;
+    }
+
+    .about-visual::before {
+      content: "";
       position: absolute;
+      inset: -30px;
+      background:
+        radial-gradient(circle at 20% 20%, rgba(59, 130, 246, 0.08) 0%, transparent 40%),
+        radial-gradient(circle at 80% 80%, rgba(245, 158, 11, 0.08) 0%, transparent 40%);
+      z-index: 0;
+      pointer-events: none;
+    }
+
+    .cred-card {
+      position: relative;
+      z-index: 1;
       background: var(--surface);
       border-radius: var(--radius-sm);
-      padding: 14px 18px;
+      padding: 24px;
+      border: 1px solid var(--border);
       box-shadow: var(--shadow);
+      transition: var(--transition);
       display: flex;
-      align-items: center;
+      flex-direction: column;
       gap: 12px;
-      font-weight: 600;
-      font-size: 0.95rem;
     }
 
-    .cert-badge svg {
-      width: 28px;
-      height: 28px;
-      color: var(--accent);
+    .cred-card:hover {
+      transform: translateY(-6px);
+      box-shadow: var(--shadow-hover);
+      border-color: var(--primary-light);
     }
 
-    .cb-1 { top: 20px; right: -20px; }
-    .cb-2 { bottom: 30px; left: -20px; }
+    .cred-card:nth-child(1) { border-top: 4px solid var(--primary); }
+    .cred-card:nth-child(2) { border-top: 4px solid var(--accent); }
+    .cred-card:nth-child(3) { border-top: 4px solid var(--teal); }
+    .cred-card:nth-child(4) { border-top: 4px solid var(--rose); }
+
+    .cred-icon {
+      width: 48px;
+      height: 48px;
+      border-radius: 14px;
+      display: grid;
+      place-items: center;
+      font-size: 1.6rem;
+      background: #f1f5f9;
+    }
+
+    .cred-text strong {
+      display: block;
+      font-size: 1.4rem;
+      color: var(--primary-dark);
+      line-height: 1.2;
+    }
+
+    .cred-text span {
+      font-size: 0.9rem;
+      color: var(--text-muted);
+    }
 
     .about-text h3 {
       font-size: 1.8rem;
@@ -1215,7 +1258,8 @@
 
       .features-grid,
       .info-list,
-      .achievement-highlights {
+      .achievement-highlights,
+      .about-visual {
         grid-template-columns: 1fr;
       }
 
@@ -1339,20 +1383,34 @@
   <section class="about section" id="about">
     <div class="container">
       <div class="about-grid">
-        <div class="about-image reveal">
-          <img src="assets/poster.jpg" alt="冯艳老师个人介绍" />
-          <div class="cert-badge cb-1">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-              <path d="M12 15a3 3 0 100-6 3 3 0 000 6z" />
-              <path d="M19.4 15a1.65 1.65 0 00.33 1.82l.06.06a2 2 0 010 2.83 2 2 0 01-2.83 0l-.06-.06a1.65 1.65 0 00-1.82-.33 1.65 1.65 0 00-1 1.51V21a2 2 0 01-2 2 2 2 0 01-2-2v-.09A1.65 1.65 0 009 19.4a1.65 1.65 0 00-1.82.33l-.06.06a2 2 0 01-2.83 0 2 2 0 010-2.83l.06-.06a1.65 1.65 0 00.33-1.82 1.65 1.65 0 00-1.51-1H3a2 2 0 01-2-2 2 2 0 012-2h.09A1.65 1.65 0 004.6 9a1.65 1.65 0 00-.33-1.82l-.06-.06a2 2 0 010-2.83 2 2 0 012.83 0l.06.06a1.65 1.65 0 001.82.33H9a1.65 1.65 0 001-1.51V3a2 2 0 012-2 2 2 0 012 2v.09a1.65 1.65 0 001 1.51 1.65 1.65 0 001.82-.33l.06-.06a2 2 0 012.83 0 2 2 0 010 2.83l-.06.06a1.65 1.65 0 00-.33 1.82V9a1.65 1.65 0 001.51 1H21a2 2 0 012 2 2 2 0 01-2 2h-.09a1.65 1.65 0 00-1.51 1z" />
-            </svg>
-            高中数学教师资格证
+        <div class="about-visual reveal">
+          <div class="cred-card">
+            <div class="cred-icon">📐</div>
+            <div class="cred-text">
+              <strong>12 年</strong>
+              <span>初高中数学一线教学经验</span>
+            </div>
           </div>
-          <div class="cert-badge cb-2">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-              <path d="M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 00-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 000-7.78z" />
-            </svg>
-            家庭教育指导师（高级）
+          <div class="cred-card">
+            <div class="cred-icon">🎯</div>
+            <div class="cred-text">
+              <strong>137 分</strong>
+              <span>高考数学成绩</span>
+            </div>
+          </div>
+          <div class="cred-card">
+            <div class="cred-icon">📜</div>
+            <div class="cred-text">
+              <strong>持证</strong>
+              <span>高中数学教师资格证</span>
+            </div>
+          </div>
+          <div class="cred-card">
+            <div class="cred-icon">🏠</div>
+            <div class="cred-text">
+              <strong>家庭教育</strong>
+              <span>指导师（高级）</span>
+            </div>
           </div>
         </div>
         <div class="about-text reveal">
