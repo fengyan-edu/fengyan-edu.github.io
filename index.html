@@ -500,143 +500,196 @@
       background: var(--bg);
     }
 
-    .about-grid {
-      display: grid;
-      grid-template-columns: 0.9fr 1.1fr;
-      gap: 60px;
-      align-items: center;
+    /* ===== About / Poster Card ===== */
+    .about {
+      background: linear-gradient(180deg, #f0f4ff 0%, var(--bg) 100%);
     }
 
-    .about-image {
-      position: relative;
-    }
-
-    .about-image img {
-      width: 100%;
+    .poster-card {
+      background: var(--surface);
       border-radius: var(--radius);
       box-shadow: var(--shadow);
+      overflow: hidden;
+      transition: var(--transition);
     }
 
-    .about-visual {
+    .poster-card:hover {
+      box-shadow: var(--shadow-hover);
+    }
+
+    .poster-header {
+      background: linear-gradient(135deg, var(--primary) 0%, var(--primary-light) 100%);
+      padding: 50px 60px;
       display: grid;
-      grid-template-columns: repeat(2, 1fr);
-      gap: 20px;
+      grid-template-columns: auto 1fr;
+      gap: 40px;
+      align-items: center;
+      color: white;
       position: relative;
+      overflow: hidden;
     }
 
-    .about-visual::before {
+    .poster-header::before {
       content: "";
       position: absolute;
-      inset: -30px;
+      inset: 0;
       background:
-        radial-gradient(circle at 20% 20%, rgba(59, 130, 246, 0.08) 0%, transparent 40%),
-        radial-gradient(circle at 80% 80%, rgba(245, 158, 11, 0.08) 0%, transparent 40%);
-      z-index: 0;
+        radial-gradient(circle at 90% 10%, rgba(255,255,255,0.15) 0%, transparent 30%),
+        radial-gradient(circle at 10% 90%, rgba(255,255,255,0.08) 0%, transparent 30%);
       pointer-events: none;
     }
 
-    .cred-card {
+    .poster-photo {
+      width: 220px;
+      height: 280px;
+      border-radius: 20px;
+      overflow: hidden;
+      box-shadow: 0 20px 50px -10px rgba(0,0,0,0.3);
       position: relative;
       z-index: 1;
-      background: var(--surface);
-      border-radius: var(--radius-sm);
-      padding: 24px;
-      border: 1px solid var(--border);
-      box-shadow: var(--shadow);
-      transition: var(--transition);
-      display: flex;
-      flex-direction: column;
-      gap: 12px;
+      border: 4px solid rgba(255,255,255,0.3);
     }
 
-    .cred-card:hover {
-      transform: translateY(-6px);
-      box-shadow: var(--shadow-hover);
-      border-color: var(--primary-light);
+    .poster-photo img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
     }
 
-    .cred-card:nth-child(1) { border-top: 4px solid var(--primary); }
-    .cred-card:nth-child(2) { border-top: 4px solid var(--accent); }
-    .cred-card:nth-child(3) { border-top: 4px solid var(--teal); }
-    .cred-card:nth-child(4) { border-top: 4px solid var(--rose); }
-
-    .cred-icon {
-      width: 48px;
-      height: 48px;
-      border-radius: 14px;
-      display: grid;
-      place-items: center;
-      font-size: 1.6rem;
-      background: #f1f5f9;
+    .poster-title {
+      position: relative;
+      z-index: 1;
     }
 
-    .cred-text strong {
-      display: block;
-      font-size: 1.4rem;
-      color: var(--primary-dark);
-      line-height: 1.2;
+    .poster-label {
+      display: inline-block;
+      background: rgba(255,255,255,0.15);
+      backdrop-filter: blur(10px);
+      padding: 6px 14px;
+      border-radius: 100px;
+      font-size: 0.85rem;
+      margin-bottom: 14px;
+      border: 1px solid rgba(255,255,255,0.2);
     }
 
-    .cred-text span {
-      font-size: 0.9rem;
-      color: var(--text-muted);
+    .poster-title h2 {
+      font-size: clamp(2rem, 4vw, 3rem);
+      font-weight: 800;
+      margin-bottom: 10px;
+      text-shadow: 0 2px 10px rgba(0,0,0,0.1);
     }
 
-    .about-text h3 {
-      font-size: 1.8rem;
-      color: var(--primary-dark);
+    .poster-role {
+      font-size: 1.1rem;
+      opacity: 0.9;
       margin-bottom: 20px;
     }
 
-    .about-text p {
-      color: var(--text-muted);
-      margin-bottom: 24px;
-      font-size: 1.05rem;
+    .poster-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
     }
 
-    .info-list {
+    .poster-tags span {
+      background: rgba(255,255,255,0.2);
+      padding: 8px 16px;
+      border-radius: 100px;
+      font-size: 0.85rem;
+      font-weight: 500;
+      border: 1px solid rgba(255,255,255,0.25);
+    }
+
+    .poster-body {
+      padding: 50px 60px;
       display: grid;
-      grid-template-columns: repeat(2, 1fr);
-      gap: 16px;
-      margin-bottom: 30px;
+      gap: 40px;
     }
 
-    .info-item {
+    .poster-block {
+      background: var(--bg);
+      border-radius: var(--radius-sm);
+      padding: 32px;
+      border: 1px solid var(--border);
+    }
+
+    .poster-block-title {
       display: flex;
       align-items: center;
       gap: 12px;
-      padding: 14px 18px;
-      background: var(--surface);
-      border-radius: var(--radius-sm);
-      border: 1px solid var(--border);
-      transition: var(--transition);
+      margin-bottom: 24px;
+      padding-bottom: 16px;
+      border-bottom: 2px solid var(--border);
     }
 
-    .info-item:hover {
-      transform: translateY(-3px);
-      box-shadow: var(--shadow);
-      border-color: var(--primary-light);
+    .poster-icon {
+      width: 42px;
+      height: 42px;
+      border-radius: 12px;
+      background: linear-gradient(135deg, var(--primary), var(--primary-light));
+      color: white;
+      display: grid;
+      place-items: center;
+      font-size: 1.3rem;
     }
 
-    .info-item svg {
-      width: 22px;
-      height: 22px;
-      color: var(--primary);
-      flex-shrink: 0;
+    .poster-block-title h3 {
+      font-size: 1.4rem;
+      color: var(--primary-dark);
+      flex: 1;
     }
 
-    .info-item div {
-      font-size: 0.9rem;
-    }
-
-    .info-item div strong {
-      display: block;
-      color: var(--text);
-      font-weight: 600;
-    }
-
-    .info-item div span {
+    .poster-note {
+      font-size: 0.8rem;
       color: var(--text-muted);
+      background: #e2e8f0;
+      padding: 4px 10px;
+      border-radius: 100px;
+    }
+
+    .poster-list {
+      list-style: none;
+      display: grid;
+      gap: 14px;
+    }
+
+    .poster-list li {
+      position: relative;
+      padding-left: 24px;
+      color: var(--text);
+      font-size: 0.98rem;
+      line-height: 1.6;
+    }
+
+    .poster-list li::before {
+      content: "";
+      position: absolute;
+      left: 0;
+      top: 9px;
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: var(--accent);
+    }
+
+    .poster-cases {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 32px;
+    }
+
+    .case-group h4 {
+      font-size: 1.1rem;
+      color: var(--primary);
+      margin-bottom: 16px;
+      padding: 8px 14px;
+      background: #dbeafe;
+      border-radius: 8px;
+      display: inline-block;
+    }
+
+    .case-group strong {
+      color: var(--primary-dark);
     }
 
     /* ===== Features ===== */
@@ -1173,7 +1226,6 @@
     /* ===== Responsive ===== */
     @media (max-width: 1024px) {
       .hero .container,
-      .about-grid,
       .contact-grid,
       .testimonial-grid {
         grid-template-columns: 1fr;
@@ -1201,6 +1253,16 @@
 
       .cases-grid {
         grid-template-columns: 1fr;
+      }
+
+      .poster-header,
+      .poster-body {
+        padding: 40px;
+      }
+
+      .poster-cases {
+        grid-template-columns: 1fr;
+        gap: 24px;
       }
     }
 
@@ -1256,10 +1318,39 @@
         padding: 70px 0;
       }
 
-      .features-grid,
-      .info-list,
-      .achievement-highlights,
-      .about-visual {
+      .features-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .poster-header {
+        grid-template-columns: 1fr;
+        text-align: center;
+        padding: 30px;
+      }
+
+      .poster-photo {
+        width: 180px;
+        height: 230px;
+        margin: 0 auto;
+      }
+
+      .poster-tags {
+        justify-content: center;
+      }
+
+      .poster-body {
+        padding: 24px;
+      }
+
+      .poster-block {
+        padding: 24px;
+      }
+
+      .poster-block-title {
+        flex-wrap: wrap;
+      }
+
+      .poster-cases {
         grid-template-columns: 1fr;
       }
 
@@ -1379,92 +1470,70 @@
     </div>
   </div>
 
-  <!-- About -->
+  <!-- About / Poster Card -->
   <section class="about section" id="about">
     <div class="container">
-      <div class="about-grid">
-        <div class="about-visual reveal">
-          <div class="cred-card">
-            <div class="cred-icon">📐</div>
-            <div class="cred-text">
-              <strong>12 年</strong>
-              <span>初高中数学一线教学经验</span>
-            </div>
+      <div class="poster-card reveal">
+        <div class="poster-header">
+          <div class="poster-photo">
+            <img src="assets/photo.jpg" alt="冯艳老师" />
           </div>
-          <div class="cred-card">
-            <div class="cred-icon">🎯</div>
-            <div class="cred-text">
-              <strong>137 分</strong>
-              <span>高考数学成绩</span>
-            </div>
-          </div>
-          <div class="cred-card">
-            <div class="cred-icon">📜</div>
-            <div class="cred-text">
-              <strong>持证</strong>
-              <span>高中数学教师资格证</span>
-            </div>
-          </div>
-          <div class="cred-card">
-            <div class="cred-icon">🏠</div>
-            <div class="cred-text">
-              <strong>家庭教育</strong>
-              <span>指导师（高级）</span>
+          <div class="poster-title">
+            <div class="poster-label">深圳 · 初高中数学培优</div>
+            <h2>冯艳老师</h2>
+            <p class="poster-role">原学而思数学老师 · 12年一线教学经验</p>
+            <div class="poster-tags">
+              <span>12年初高中数学教学经验</span>
+              <span>原XES数学老师</span>
+              <span>小组课教师</span>
             </div>
           </div>
         </div>
-        <div class="about-text reveal">
-          <h3>扎根深圳，专注中高考数学</h3>
-          <p>
-            毕业于广东财经大学，原学而思大新校区数学老师。高考数学 137 分，累计 11 年以上数学教学经验，
-            带过 11 届初三毕业班、6 年以上高三。熟悉深圳地区中高考教材和各大名校，对重点难点把握精准。
-          </p>
-          <p>
-            熟悉各类学生特点，擅长初高中数学培优补差。针对不同阶段、不同性格的学生制定个性化教学方案，
-            注重学习思路的培养和学习兴趣的提升。
-          </p>
-          <div class="info-list">
-            <div class="info-item">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                <path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2" />
-                <circle cx="12" cy="7" r="4" />
-              </svg>
-              <div>
-                <strong>教龄</strong>
-                <span>12 年</span>
-              </div>
+
+        <div class="poster-body">
+          <div class="poster-block">
+            <div class="poster-block-title">
+              <div class="poster-icon">🎯</div>
+              <h3>教学特点</h3>
             </div>
-            <div class="info-item">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                <path d="M22 10v6M2 10l10-5 10 5-10 5z" />
-                <path d="M6 12v5c3 3 9 3 12 0v-5" />
-              </svg>
-              <div>
-                <strong>毕业院校</strong>
-                <span>广东财经大学</span>
-              </div>
+            <ul class="poster-list">
+              <li>熟悉深圳地区的中高考教材和各大名校，对中高考的重点难点把握精准。</li>
+              <li>熟悉各类学生特点，擅长初高中数学培优补差。</li>
+            </ul>
+          </div>
+
+          <div class="poster-block">
+            <div class="poster-block-title">
+              <div class="poster-icon">🏆</div>
+              <h3>教学成果</h3>
+              <span class="poster-note">仅展示部分成果</span>
             </div>
-            <div class="info-item">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z" />
-                <circle cx="12" cy="10" r="3" />
-              </svg>
-              <div>
-                <strong>授课地点</strong>
-                <span>深圳南山区大新地铁口附近</span>
+            <div class="poster-cases">
+              <div class="case-group">
+                <h4>高中案例</h4>
+                <ul class="poster-list">
+                  <li><strong>李*宝</strong> 宝中文科零班：辅导前 80-90 分 → 高考 115 分，总分 633，录入北京外国语</li>
+                  <li><strong>刘*深</strong> 美术艺术生：辅导前 20-30 分 → 高考 63 分，总分 522</li>
+                  <li><strong>李*硕</strong> 宝中高中部：辅导前 70 多分 → 高二期末 112 分</li>
+                  <li><strong>李*</strong> 红岭高中部：辅导前 90-100 分 → 高一期末 119 分</li>
+                  <li><strong>张*</strong> 深中高中部：高考数学 121 分，总分 651，录入东南大学</li>
+                  <li><strong>唐*轩</strong> 中科附高：高考数学 115 分，总分 637，录入深圳理工</li>
+                  <li><strong>郭*雅</strong> 深中高中部：高考数学 105 分，总分 605，录入南方医科大学</li>
+                  <li><strong>牛*倩</strong> 育才高中：高考数学 101 分，总分 585，录入广东工业大学</li>
+                </ul>
               </div>
-            </div>
-            <div class="info-item">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                <path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6 19.79 19.79 0 01-3.07-8.67A2 2 0 014.11 2h3a2 2 0 012 1.72 12.84 12.84 0 00.7 2.81 2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45 12.84 12.84 0 002.81.7A2 2 0 0122 16.92z" />
-              </svg>
-              <div>
-                <strong>联系电话</strong>
-                <span>15014064927</span>
+              <div class="case-group">
+                <h4>初中案例</h4>
+                <ul class="poster-list">
+                  <li><strong>王*心</strong> 麒麟中学：辅导前 80+ → 中考数学 92 分，考入深圳中学</li>
+                  <li><strong>黄*豪</strong> 南海中学：辅导前 85 左右 → 中考数学 98 分，考入深圳中学</li>
+                  <li><strong>张*曦</strong> 深中 3+2：辅导前 85-90 分 → 中考数学 98 分，考入深圳中学</li>
+                  <li><strong>李*</strong> 宝安中学：辅导前 75-80 分 → 中考数学 91 分，考入宝安中学</li>
+                  <li><strong>杨*妍</strong> 麒麟中学：辅导前不及格 → 中考 77 分，考入深外龙华部</li>
+                </ul>
               </div>
             </div>
           </div>
-          <a href="#contact" class="btn btn-primary">立即咨询课程</a>
         </div>
       </div>
     </div>
