@@ -1,0 +1,1901 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>冯艳老师 · 初高中数学培优</title>
+  <meta name="description" content="冯艳老师，12年初高中数学教学经验，原学而思老师，专注深圳中高考数学培优补差。" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@300;400;500;700;900&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --primary: #1e3a8a;
+      --primary-light: #3b82f6;
+      --primary-dark: #0f1d4a;
+      --accent: #f59e0b;
+      --accent-light: #fbbf24;
+      --teal: #0d9488;
+      --rose: #e11d48;
+      --bg: #fafaf9;
+      --surface: #ffffff;
+      --text: #0f172a;
+      --text-muted: #64748b;
+      --border: #e2e8f0;
+      --shadow: 0 10px 40px -10px rgba(30, 58, 138, 0.15);
+      --shadow-hover: 0 20px 60px -15px rgba(30, 58, 138, 0.25);
+      --radius: 24px;
+      --radius-sm: 16px;
+      --transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: "Noto Sans SC", "PingFang SC", "Microsoft YaHei", sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.7;
+      overflow-x: hidden;
+    }
+
+    /* ===== Scrollbar ===== */
+    ::-webkit-scrollbar {
+      width: 8px;
+    }
+    ::-webkit-scrollbar-track {
+      background: var(--bg);
+    }
+    ::-webkit-scrollbar-thumb {
+      background: var(--primary-light);
+      border-radius: 4px;
+    }
+
+    /* ===== Utilities ===== */
+    .container {
+      width: min(1200px, 92%);
+      margin: 0 auto;
+    }
+
+    .section {
+      padding: 100px 0;
+      position: relative;
+    }
+
+    .section-title {
+      font-size: clamp(1.8rem, 4vw, 2.6rem);
+      font-weight: 700;
+      color: var(--primary-dark);
+      margin-bottom: 12px;
+      position: relative;
+      display: inline-block;
+    }
+
+    .section-title::after {
+      content: "";
+      position: absolute;
+      bottom: -8px;
+      left: 0;
+      width: 60px;
+      height: 4px;
+      background: linear-gradient(90deg, var(--accent), var(--accent-light));
+      border-radius: 2px;
+    }
+
+    .section-subtitle {
+      color: var(--text-muted);
+      font-size: 1.05rem;
+      margin-top: 20px;
+      margin-bottom: 50px;
+    }
+
+    /* ===== Navigation ===== */
+    nav {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 1000;
+      padding: 16px 0;
+      transition: var(--transition);
+    }
+
+    nav.scrolled {
+      background: rgba(255, 255, 255, 0.92);
+      backdrop-filter: blur(20px);
+      box-shadow: 0 4px 30px -10px rgba(0, 0, 0, 0.08);
+      padding: 12px 0;
+    }
+
+    .nav-inner {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .logo {
+      font-size: 1.3rem;
+      font-weight: 900;
+      color: white;
+      text-decoration: none;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      transition: var(--transition);
+    }
+
+    nav.scrolled .logo {
+      color: var(--primary);
+    }
+
+    .logo-icon {
+      width: 36px;
+      height: 36px;
+      background: linear-gradient(135deg, var(--accent), var(--accent-light));
+      border-radius: 10px;
+      display: grid;
+      place-items: center;
+      font-size: 1rem;
+      color: white;
+      font-weight: 700;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 32px;
+      list-style: none;
+    }
+
+    .nav-links a {
+      color: rgba(255, 255, 255, 0.85);
+      text-decoration: none;
+      font-size: 0.95rem;
+      font-weight: 500;
+      transition: var(--transition);
+      position: relative;
+    }
+
+    nav.scrolled .nav-links a {
+      color: var(--text);
+    }
+
+    .nav-links a::after {
+      content: "";
+      position: absolute;
+      bottom: -6px;
+      left: 0;
+      width: 0;
+      height: 2px;
+      background: var(--accent);
+      transition: var(--transition);
+    }
+
+    .nav-links a:hover {
+      color: var(--accent);
+    }
+
+    .nav-links a:hover::after {
+      width: 100%;
+    }
+
+    .menu-toggle {
+      display: none;
+      flex-direction: column;
+      gap: 5px;
+      cursor: pointer;
+      z-index: 1001;
+    }
+
+    .menu-toggle span {
+      width: 26px;
+      height: 2px;
+      background: white;
+      transition: var(--transition);
+      border-radius: 2px;
+    }
+
+    nav.scrolled .menu-toggle span {
+      background: var(--primary);
+    }
+
+    /* ===== Hero ===== */
+    .hero {
+      min-height: 100vh;
+      background: linear-gradient(135deg, var(--primary-dark) 0%, var(--primary) 55%, #1d4ed8 100%);
+      position: relative;
+      display: flex;
+      align-items: center;
+      overflow: hidden;
+      padding-top: 80px;
+    }
+
+    .hero::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background:
+        radial-gradient(circle at 20% 30%, rgba(245, 158, 11, 0.12) 0%, transparent 40%),
+        radial-gradient(circle at 80% 70%, rgba(13, 148, 136, 0.1) 0%, transparent 40%);
+      pointer-events: none;
+    }
+
+    .hero-grid {
+      position: absolute;
+      inset: 0;
+      background-image:
+        linear-gradient(rgba(255,255,255,0.03) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255,255,255,0.03) 1px, transparent 1px);
+      background-size: 60px 60px;
+      mask-image: linear-gradient(to bottom, rgba(0,0,0,0.5), transparent 80%);
+      pointer-events: none;
+    }
+
+    .hero .container {
+      display: grid;
+      grid-template-columns: 1.1fr 0.9fr;
+      gap: 60px;
+      align-items: center;
+      position: relative;
+      z-index: 2;
+    }
+
+    .hero-content {
+      color: white;
+    }
+
+    .hero-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: rgba(255, 255, 255, 0.1);
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      padding: 8px 18px;
+      border-radius: 100px;
+      font-size: 0.9rem;
+      margin-bottom: 24px;
+      backdrop-filter: blur(10px);
+    }
+
+    .hero-badge .dot {
+      width: 8px;
+      height: 8px;
+      background: var(--accent-light);
+      border-radius: 50%;
+      animation: pulse 2s infinite;
+    }
+
+    @keyframes pulse {
+      0%, 100% { opacity: 1; transform: scale(1); }
+      50% { opacity: 0.6; transform: scale(1.3); }
+    }
+
+    .hero h1 {
+      font-size: clamp(2.8rem, 6vw, 4.5rem);
+      font-weight: 900;
+      line-height: 1.1;
+      margin-bottom: 16px;
+      letter-spacing: -0.02em;
+    }
+
+    .hero h1 span {
+      color: var(--accent-light);
+      position: relative;
+    }
+
+    .hero-title-sub {
+      font-size: clamp(1.1rem, 2.5vw, 1.5rem);
+      font-weight: 400;
+      opacity: 0.9;
+      margin-bottom: 32px;
+    }
+
+    .hero-desc {
+      font-size: 1.05rem;
+      opacity: 0.8;
+      max-width: 520px;
+      margin-bottom: 36px;
+    }
+
+    .hero-buttons {
+      display: flex;
+      gap: 16px;
+      flex-wrap: wrap;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 14px 28px;
+      border-radius: 100px;
+      font-weight: 600;
+      text-decoration: none;
+      transition: var(--transition);
+      cursor: pointer;
+      border: none;
+      font-size: 1rem;
+    }
+
+    .btn-primary {
+      background: linear-gradient(135deg, var(--accent), var(--accent-light));
+      color: var(--primary-dark);
+      box-shadow: 0 10px 30px -8px rgba(245, 158, 11, 0.5);
+    }
+
+    .btn-primary:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 16px 40px -10px rgba(245, 158, 11, 0.6);
+    }
+
+    .btn-outline {
+      background: transparent;
+      color: white;
+      border: 1px solid rgba(255, 255, 255, 0.4);
+    }
+
+    .btn-outline:hover {
+      background: rgba(255, 255, 255, 0.1);
+      border-color: rgba(255, 255, 255, 0.7);
+    }
+
+    .hero-visual {
+      position: relative;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .photo-frame {
+      position: relative;
+      width: min(420px, 90vw);
+      aspect-ratio: 3/4;
+      border-radius: 30px;
+      overflow: hidden;
+      box-shadow: 0 30px 80px -20px rgba(0, 0, 0, 0.4);
+      transform: perspective(1000px) rotateY(-5deg) rotateX(3deg);
+      transition: var(--transition);
+    }
+
+    .photo-frame:hover {
+      transform: perspective(1000px) rotateY(0deg) rotateX(0deg);
+    }
+
+    .photo-frame img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.8s ease;
+    }
+
+    .photo-frame:hover img {
+      transform: scale(1.05);
+    }
+
+    .floating-card {
+      position: absolute;
+      background: rgba(255, 255, 255, 0.95);
+      backdrop-filter: blur(10px);
+      border-radius: var(--radius-sm);
+      padding: 16px 20px;
+      box-shadow: var(--shadow);
+      color: var(--text);
+      font-size: 0.9rem;
+      font-weight: 500;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      animation: float 5s ease-in-out infinite;
+      z-index: 3;
+    }
+
+    .floating-card .icon {
+      width: 42px;
+      height: 42px;
+      border-radius: 12px;
+      display: grid;
+      place-items: center;
+      font-size: 1.2rem;
+    }
+
+    .floating-card .icon.blue { background: #dbeafe; }
+    .floating-card .icon.gold { background: #fef3c7; }
+    .floating-card .icon.teal { background: #ccfbf1; }
+
+    .floating-card .num {
+      font-size: 1.3rem;
+      font-weight: 800;
+      color: var(--primary);
+      display: block;
+      line-height: 1.2;
+    }
+
+    .floating-card .label {
+      font-size: 0.8rem;
+      color: var(--text-muted);
+    }
+
+    .fc-1 { top: 10%; right: -20px; animation-delay: 0s; }
+    .fc-2 { bottom: 20%; left: -30px; animation-delay: 1.5s; }
+    .fc-3 { bottom: 5%; right: 10%; animation-delay: 3s; }
+
+    @keyframes float {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-12px); }
+    }
+
+    .scroll-hint {
+      position: absolute;
+      bottom: 30px;
+      left: 50%;
+      transform: translateX(-50%);
+      color: rgba(255,255,255,0.7);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 8px;
+      font-size: 0.85rem;
+      animation: bounce 2s infinite;
+      cursor: pointer;
+      text-decoration: none;
+    }
+
+    .scroll-hint svg {
+      width: 24px;
+      height: 24px;
+    }
+
+    @keyframes bounce {
+      0%, 100% { transform: translateX(-50%) translateY(0); }
+      50% { transform: translateX(-50%) translateY(8px); }
+    }
+
+    /* ===== Stats Strip ===== */
+    .stats-strip {
+      background: var(--surface);
+      margin-top: -60px;
+      position: relative;
+      z-index: 10;
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      padding: 40px;
+    }
+
+    .stats-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 30px;
+      text-align: center;
+    }
+
+    .stat-item {
+      padding: 10px;
+    }
+
+    .stat-item .number {
+      font-size: 2.4rem;
+      font-weight: 900;
+      background: linear-gradient(135deg, var(--primary), var(--primary-light));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      line-height: 1.2;
+    }
+
+    .stat-item .label {
+      color: var(--text-muted);
+      font-size: 0.95rem;
+      margin-top: 6px;
+    }
+
+    /* ===== About ===== */
+    .about {
+      background: var(--bg);
+    }
+
+    .about-grid {
+      display: grid;
+      grid-template-columns: 0.9fr 1.1fr;
+      gap: 60px;
+      align-items: center;
+    }
+
+    .about-image {
+      position: relative;
+    }
+
+    .about-image img {
+      width: 100%;
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+    }
+
+    .cert-badge {
+      position: absolute;
+      background: var(--surface);
+      border-radius: var(--radius-sm);
+      padding: 14px 18px;
+      box-shadow: var(--shadow);
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      font-weight: 600;
+      font-size: 0.95rem;
+    }
+
+    .cert-badge svg {
+      width: 28px;
+      height: 28px;
+      color: var(--accent);
+    }
+
+    .cb-1 { top: 20px; right: -20px; }
+    .cb-2 { bottom: 30px; left: -20px; }
+
+    .about-text h3 {
+      font-size: 1.8rem;
+      color: var(--primary-dark);
+      margin-bottom: 20px;
+    }
+
+    .about-text p {
+      color: var(--text-muted);
+      margin-bottom: 24px;
+      font-size: 1.05rem;
+    }
+
+    .info-list {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 16px;
+      margin-bottom: 30px;
+    }
+
+    .info-item {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding: 14px 18px;
+      background: var(--surface);
+      border-radius: var(--radius-sm);
+      border: 1px solid var(--border);
+      transition: var(--transition);
+    }
+
+    .info-item:hover {
+      transform: translateY(-3px);
+      box-shadow: var(--shadow);
+      border-color: var(--primary-light);
+    }
+
+    .info-item svg {
+      width: 22px;
+      height: 22px;
+      color: var(--primary);
+      flex-shrink: 0;
+    }
+
+    .info-item div {
+      font-size: 0.9rem;
+    }
+
+    .info-item div strong {
+      display: block;
+      color: var(--text);
+      font-weight: 600;
+    }
+
+    .info-item div span {
+      color: var(--text-muted);
+    }
+
+    /* ===== Features ===== */
+    .features {
+      background: linear-gradient(180deg, var(--bg) 0%, #f0f4ff 100%);
+    }
+
+    .features-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
+    }
+
+    .feature-card {
+      background: var(--surface);
+      border-radius: var(--radius);
+      padding: 36px 28px;
+      border: 1px solid var(--border);
+      transition: var(--transition);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .feature-card::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 4px;
+      background: linear-gradient(90deg, var(--primary), var(--accent));
+      transform: scaleX(0);
+      transform-origin: left;
+      transition: transform 0.5s ease;
+    }
+
+    .feature-card:hover {
+      transform: translateY(-8px);
+      box-shadow: var(--shadow-hover);
+      border-color: transparent;
+    }
+
+    .feature-card:hover::before {
+      transform: scaleX(1);
+    }
+
+    .feature-icon {
+      width: 56px;
+      height: 56px;
+      border-radius: 16px;
+      display: grid;
+      place-items: center;
+      font-size: 1.6rem;
+      margin-bottom: 20px;
+      background: linear-gradient(135deg, #dbeafe, #eff6ff);
+    }
+
+    .feature-card h3 {
+      font-size: 1.2rem;
+      color: var(--primary-dark);
+      margin-bottom: 12px;
+    }
+
+    .feature-card p {
+      color: var(--text-muted);
+      font-size: 0.95rem;
+    }
+
+    /* ===== Achievements ===== */
+    .achievements {
+      background: var(--surface);
+    }
+
+    .tabs {
+      display: inline-flex;
+      background: var(--bg);
+      border-radius: 100px;
+      padding: 6px;
+      margin-bottom: 40px;
+    }
+
+    .tab-btn {
+      padding: 12px 28px;
+      border-radius: 100px;
+      border: none;
+      background: transparent;
+      color: var(--text-muted);
+      font-weight: 600;
+      cursor: pointer;
+      transition: var(--transition);
+      font-size: 0.95rem;
+    }
+
+    .tab-btn.active {
+      background: var(--primary);
+      color: white;
+      box-shadow: 0 4px 15px -5px rgba(30, 58, 138, 0.4);
+    }
+
+    .tab-content {
+      display: none;
+    }
+
+    .tab-content.active {
+      display: block;
+      animation: fadeIn 0.5s ease;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(10px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .cases-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 20px;
+    }
+
+    .case-card {
+      background: var(--bg);
+      border-radius: var(--radius-sm);
+      padding: 24px;
+      border: 1px solid var(--border);
+      transition: var(--transition);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .case-card:hover {
+      transform: translateY(-4px);
+      box-shadow: var(--shadow);
+    }
+
+    .case-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      margin-bottom: 16px;
+    }
+
+    .case-name {
+      font-weight: 700;
+      color: var(--primary-dark);
+      font-size: 1.1rem;
+    }
+
+    .case-school {
+      font-size: 0.85rem;
+      color: var(--text-muted);
+      margin-top: 4px;
+    }
+
+    .case-tag {
+      padding: 4px 12px;
+      border-radius: 100px;
+      font-size: 0.75rem;
+      font-weight: 600;
+    }
+
+    .tag-high { background: #dbeafe; color: var(--primary); }
+    .tag-middle { background: #ccfbf1; color: var(--teal); }
+
+    .case-progress {
+      margin-bottom: 14px;
+    }
+
+    .case-progress-label {
+      display: flex;
+      justify-content: space-between;
+      font-size: 0.85rem;
+      color: var(--text-muted);
+      margin-bottom: 6px;
+    }
+
+    .case-progress-bar {
+      height: 8px;
+      background: var(--border);
+      border-radius: 4px;
+      overflow: hidden;
+    }
+
+    .case-progress-fill {
+      height: 100%;
+      border-radius: 4px;
+      background: linear-gradient(90deg, var(--accent), var(--accent-light));
+      width: 0;
+      transition: width 1.2s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    .case-result {
+      display: flex;
+      gap: 20px;
+      padding-top: 16px;
+      border-top: 1px solid var(--border);
+    }
+
+    .case-result-item {
+      flex: 1;
+    }
+
+    .case-result-item .val {
+      font-size: 1.3rem;
+      font-weight: 800;
+      color: var(--primary);
+    }
+
+    .case-result-item .lbl {
+      font-size: 0.8rem;
+      color: var(--text-muted);
+    }
+
+    /* ===== Testimonials ===== */
+    .testimonials {
+      background: linear-gradient(180deg, var(--surface) 0%, var(--bg) 100%);
+    }
+
+    .testimonial-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 30px;
+      align-items: center;
+    }
+
+    .testimonial-image {
+      position: relative;
+      border-radius: var(--radius);
+      overflow: hidden;
+      box-shadow: var(--shadow);
+    }
+
+    .testimonial-image img {
+      width: 100%;
+      display: block;
+    }
+
+    .testimonial-image::after {
+      content: "家长真实反馈";
+      position: absolute;
+      bottom: 20px;
+      left: 20px;
+      background: rgba(30, 58, 138, 0.9);
+      color: white;
+      padding: 8px 16px;
+      border-radius: 100px;
+      font-size: 0.85rem;
+      font-weight: 600;
+    }
+
+    .testimonial-content {
+      padding: 20px;
+    }
+
+    .quote-card {
+      background: var(--surface);
+      border-radius: var(--radius);
+      padding: 32px;
+      box-shadow: var(--shadow);
+      position: relative;
+      margin-bottom: 24px;
+      border-left: 4px solid var(--accent);
+    }
+
+    .quote-card::before {
+      content: """;
+      position: absolute;
+      top: 16px;
+      right: 24px;
+      font-size: 5rem;
+      color: var(--border);
+      font-family: Georgia, serif;
+      line-height: 1;
+    }
+
+    .quote-card p {
+      font-size: 1.1rem;
+      color: var(--text);
+      margin-bottom: 20px;
+      position: relative;
+      z-index: 1;
+    }
+
+    .quote-author {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+    }
+
+    .quote-author-avatar {
+      width: 48px;
+      height: 48px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, var(--primary), var(--primary-light));
+      display: grid;
+      place-items: center;
+      color: white;
+      font-weight: 700;
+    }
+
+    .quote-author-info .name {
+      font-weight: 700;
+      color: var(--primary-dark);
+    }
+
+    .quote-author-info .role {
+      font-size: 0.85rem;
+      color: var(--text-muted);
+    }
+
+    .achievement-highlights {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 16px;
+    }
+
+    .highlight-box {
+      background: var(--surface);
+      border-radius: var(--radius-sm);
+      padding: 20px;
+      text-align: center;
+      border: 1px solid var(--border);
+      transition: var(--transition);
+    }
+
+    .highlight-box:hover {
+      transform: translateY(-4px);
+      box-shadow: var(--shadow);
+    }
+
+    .highlight-box .num {
+      font-size: 1.6rem;
+      font-weight: 800;
+      color: var(--accent);
+    }
+
+    .highlight-box .txt {
+      font-size: 0.85rem;
+      color: var(--text-muted);
+      margin-top: 4px;
+    }
+
+    /* ===== Contact ===== */
+    .contact {
+      background: var(--primary-dark);
+      color: white;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .contact::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background:
+        radial-gradient(circle at 10% 20%, rgba(245, 158, 11, 0.1) 0%, transparent 35%),
+        radial-gradient(circle at 90% 80%, rgba(59, 130, 246, 0.15) 0%, transparent 40%);
+    }
+
+    .contact-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 60px;
+      align-items: center;
+      position: relative;
+      z-index: 1;
+    }
+
+    .contact-content h2 {
+      font-size: clamp(1.8rem, 4vw, 2.6rem);
+      margin-bottom: 16px;
+    }
+
+    .contact-content h2 span {
+      color: var(--accent-light);
+    }
+
+    .contact-content p {
+      opacity: 0.8;
+      margin-bottom: 32px;
+      font-size: 1.05rem;
+    }
+
+    .contact-methods {
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+    }
+
+    .contact-method {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      background: rgba(255, 255, 255, 0.08);
+      padding: 20px;
+      border-radius: var(--radius-sm);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      transition: var(--transition);
+      text-decoration: none;
+      color: white;
+    }
+
+    .contact-method:hover {
+      background: rgba(255, 255, 255, 0.15);
+      transform: translateX(8px);
+    }
+
+    .contact-method .icon {
+      width: 48px;
+      height: 48px;
+      border-radius: 14px;
+      background: var(--accent);
+      display: grid;
+      place-items: center;
+      font-size: 1.3rem;
+      flex-shrink: 0;
+    }
+
+    .contact-method div strong {
+      display: block;
+      font-size: 1.1rem;
+    }
+
+    .contact-method div span {
+      opacity: 0.7;
+      font-size: 0.95rem;
+    }
+
+    .contact-visual {
+      display: flex;
+      justify-content: center;
+    }
+
+    .contact-card {
+      background: rgba(255, 255, 255, 0.06);
+      backdrop-filter: blur(20px);
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      border-radius: var(--radius);
+      padding: 40px;
+      max-width: 400px;
+      width: 100%;
+      text-align: center;
+    }
+
+    .contact-card img {
+      width: 120px;
+      height: 120px;
+      border-radius: 50%;
+      object-fit: cover;
+      border: 4px solid rgba(255, 255, 255, 0.2);
+      margin-bottom: 20px;
+    }
+
+    .contact-card h3 {
+      font-size: 1.5rem;
+      margin-bottom: 8px;
+    }
+
+    .contact-card p {
+      opacity: 0.7;
+      margin-bottom: 24px;
+    }
+
+    .contact-card .cta-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: var(--accent);
+      color: var(--primary-dark);
+      padding: 14px 32px;
+      border-radius: 100px;
+      font-weight: 700;
+      text-decoration: none;
+      transition: var(--transition);
+    }
+
+    .contact-card .cta-btn:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 10px 30px -10px rgba(245, 158, 11, 0.5);
+    }
+
+    /* ===== Footer ===== */
+    footer {
+      background: #0a1228;
+      color: rgba(255, 255, 255, 0.5);
+      padding: 30px 0;
+      text-align: center;
+      font-size: 0.9rem;
+    }
+
+    /* ===== Reveal Animation ===== */
+    .reveal {
+      opacity: 0;
+      transform: translateY(30px);
+      transition: opacity 0.8s ease, transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    .reveal.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* ===== Back to Top ===== */
+    .back-to-top {
+      position: fixed;
+      bottom: 30px;
+      right: 30px;
+      width: 48px;
+      height: 48px;
+      border-radius: 50%;
+      background: var(--primary);
+      color: white;
+      border: none;
+      display: grid;
+      place-items: center;
+      cursor: pointer;
+      opacity: 0;
+      visibility: hidden;
+      transition: var(--transition);
+      box-shadow: var(--shadow);
+      z-index: 999;
+    }
+
+    .back-to-top.visible {
+      opacity: 1;
+      visibility: visible;
+    }
+
+    .back-to-top:hover {
+      background: var(--accent);
+      color: var(--primary-dark);
+      transform: translateY(-4px);
+    }
+
+    /* ===== Responsive ===== */
+    @media (max-width: 1024px) {
+      .hero .container,
+      .about-grid,
+      .contact-grid,
+      .testimonial-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .hero-visual {
+        order: -1;
+      }
+
+      .photo-frame {
+        width: min(320px, 80vw);
+      }
+
+      .floating-card {
+        display: none;
+      }
+
+      .stats-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      .features-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      .cases-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    @media (max-width: 768px) {
+      .nav-links {
+        position: fixed;
+        top: 0;
+        right: -100%;
+        width: 70%;
+        max-width: 300px;
+        height: 100vh;
+        background: var(--surface);
+        flex-direction: column;
+        padding: 100px 40px;
+        gap: 24px;
+        transition: var(--transition);
+        box-shadow: -10px 0 40px rgba(0,0,0,0.1);
+      }
+
+      .nav-links.open {
+        right: 0;
+      }
+
+      .nav-links a {
+        color: var(--text) !important;
+        font-size: 1.1rem;
+      }
+
+      .menu-toggle {
+        display: flex;
+      }
+
+      .menu-toggle.open span:nth-child(1) {
+        transform: rotate(45deg) translate(5px, 5px);
+        background: var(--text) !important;
+      }
+
+      .menu-toggle.open span:nth-child(2) {
+        opacity: 0;
+      }
+
+      .menu-toggle.open span:nth-child(3) {
+        transform: rotate(-45deg) translate(5px, -5px);
+        background: var(--text) !important;
+      }
+
+      .hero {
+        padding-top: 100px;
+        padding-bottom: 80px;
+      }
+
+      .section {
+        padding: 70px 0;
+      }
+
+      .features-grid,
+      .info-list,
+      .achievement-highlights {
+        grid-template-columns: 1fr;
+      }
+
+      .stats-strip {
+        padding: 30px 20px;
+      }
+
+      .testimonial-image {
+        margin-bottom: 20px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- Navigation -->
+  <nav id="navbar">
+    <div class="container nav-inner">
+      <a href="#" class="logo">
+        <div class="logo-icon">冯</div>
+        冯艳老师
+      </a>
+      <ul class="nav-links" id="navLinks">
+        <li><a href="#about">关于老师</a></li>
+        <li><a href="#features">教学特色</a></li>
+        <li><a href="#achievements">教学成果</a></li>
+        <li><a href="#testimonials">家长反馈</a></li>
+        <li><a href="#contact">联系我</a></li>
+      </ul>
+      <div class="menu-toggle" id="menuToggle">
+        <span></span>
+        <span></span>
+        <span></span>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Hero -->
+  <section class="hero" id="home">
+    <div class="hero-grid"></div>
+    <div class="container">
+      <div class="hero-content">
+        <div class="hero-badge">
+          <span class="dot"></span>
+          深圳 · 初高中数学培优
+        </div>
+        <h1>冯艳 <span>老师</span></h1>
+        <p class="hero-title-sub">原学而思数学老师 · 12年一线教学经验</p>
+        <p class="hero-desc">
+          专注深圳中高考数学，熟悉本地教材与名校考点。擅长因材施教，
+          从学生意愿与个体需要出发，让每个孩子找到属于自己的数学节奏。
+        </p>
+        <div class="hero-buttons">
+          <a href="#contact" class="btn btn-primary">
+            <span>📞</span> 预约试听
+          </a>
+          <a href="#achievements" class="btn btn-outline">
+            <span>🏆</span> 查看成果
+          </a>
+        </div>
+      </div>
+      <div class="hero-visual">
+        <div class="photo-frame">
+          <img src="assets/photo.jpg" alt="冯艳老师" />
+        </div>
+        <div class="floating-card fc-1">
+          <div class="icon gold">🏆</div>
+          <div>
+            <span class="num">12年</span>
+            <span class="label">教学经验</span>
+          </div>
+        </div>
+        <div class="floating-card fc-2">
+          <div class="icon blue">📈</div>
+          <div>
+            <span class="num">137分</span>
+            <span class="label">高考数学</span>
+          </div>
+        </div>
+        <div class="floating-card fc-3">
+          <div class="icon teal">🎓</div>
+          <div>
+            <span class="num">11届</span>
+            <span class="label">毕业班带班</span>
+          </div>
+        </div>
+      </div>
+    </div>
+    <a href="#about" class="scroll-hint">
+      <span>向下滚动</span>
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+        <path d="M12 5v14M5 12l7 7 7-7" />
+      </svg>
+    </a>
+  </section>
+
+  <!-- Stats Strip -->
+  <div class="container" style="position: relative; z-index: 10;">
+    <div class="stats-strip reveal">
+      <div class="stats-grid">
+        <div class="stat-item">
+          <div class="number" data-target="12">0</div>
+          <div class="label">年教学经验</div>
+        </div>
+        <div class="stat-item">
+          <div class="number" data-target="11">0</div>
+          <div class="label">届初三毕业班</div>
+        </div>
+        <div class="stat-item">
+          <div class="number" data-target="6">0</div>
+          <div class="label">年以上高三带班</div>
+        </div>
+        <div class="stat-item">
+          <div class="number" data-target="137">0</div>
+          <div class="label">高考数学分数</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- About -->
+  <section class="about section" id="about">
+    <div class="container">
+      <div class="about-grid">
+        <div class="about-image reveal">
+          <img src="assets/poster.jpg" alt="冯艳老师个人介绍" />
+          <div class="cert-badge cb-1">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M12 15a3 3 0 100-6 3 3 0 000 6z" />
+              <path d="M19.4 15a1.65 1.65 0 00.33 1.82l.06.06a2 2 0 010 2.83 2 2 0 01-2.83 0l-.06-.06a1.65 1.65 0 00-1.82-.33 1.65 1.65 0 00-1 1.51V21a2 2 0 01-2 2 2 2 0 01-2-2v-.09A1.65 1.65 0 009 19.4a1.65 1.65 0 00-1.82.33l-.06.06a2 2 0 01-2.83 0 2 2 0 010-2.83l.06-.06a1.65 1.65 0 00.33-1.82 1.65 1.65 0 00-1.51-1H3a2 2 0 01-2-2 2 2 0 012-2h.09A1.65 1.65 0 004.6 9a1.65 1.65 0 00-.33-1.82l-.06-.06a2 2 0 010-2.83 2 2 0 012.83 0l.06.06a1.65 1.65 0 001.82.33H9a1.65 1.65 0 001-1.51V3a2 2 0 012-2 2 2 0 012 2v.09a1.65 1.65 0 001 1.51 1.65 1.65 0 001.82-.33l.06-.06a2 2 0 012.83 0 2 2 0 010 2.83l-.06.06a1.65 1.65 0 00-.33 1.82V9a1.65 1.65 0 001.51 1H21a2 2 0 012 2 2 2 0 01-2 2h-.09a1.65 1.65 0 00-1.51 1z" />
+            </svg>
+            高中数学教师资格证
+          </div>
+          <div class="cert-badge cb-2">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 00-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 000-7.78z" />
+            </svg>
+            家庭教育指导师（高级）
+          </div>
+        </div>
+        <div class="about-text reveal">
+          <h3>扎根深圳，专注中高考数学</h3>
+          <p>
+            毕业于广东财经大学，原学而思大新校区数学老师。高考数学 137 分，累计 11 年以上数学教学经验，
+            带过 11 届初三毕业班、6 年以上高三。熟悉深圳地区中高考教材和各大名校，对重点难点把握精准。
+          </p>
+          <p>
+            熟悉各类学生特点，擅长初高中数学培优补差。针对不同阶段、不同性格的学生制定个性化教学方案，
+            注重学习思路的培养和学习兴趣的提升。
+          </p>
+          <div class="info-list">
+            <div class="info-item">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2" />
+                <circle cx="12" cy="7" r="4" />
+              </svg>
+              <div>
+                <strong>教龄</strong>
+                <span>12 年</span>
+              </div>
+            </div>
+            <div class="info-item">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M22 10v6M2 10l10-5 10 5-10 5z" />
+                <path d="M6 12v5c3 3 9 3 12 0v-5" />
+              </svg>
+              <div>
+                <strong>毕业院校</strong>
+                <span>广东财经大学</span>
+              </div>
+            </div>
+            <div class="info-item">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z" />
+                <circle cx="12" cy="10" r="3" />
+              </svg>
+              <div>
+                <strong>授课地点</strong>
+                <span>深圳南山区大新地铁口附近</span>
+              </div>
+            </div>
+            <div class="info-item">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6 19.79 19.79 0 01-3.07-8.67A2 2 0 014.11 2h3a2 2 0 012 1.72 12.84 12.84 0 00.7 2.81 2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45 12.84 12.84 0 002.81.7A2 2 0 0122 16.92z" />
+              </svg>
+              <div>
+                <strong>联系电话</strong>
+                <span>15014064927</span>
+              </div>
+            </div>
+          </div>
+          <a href="#contact" class="btn btn-primary">立即咨询课程</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Features -->
+  <section class="features section" id="features">
+    <div class="container">
+      <div class="reveal">
+        <h2 class="section-title">教学特色</h2>
+        <p class="section-subtitle">因材施教，不止于提分，更关注学生思维与兴趣的成长。</p>
+      </div>
+      <div class="features-grid">
+        <div class="feature-card reveal">
+          <div class="feature-icon">🎯</div>
+          <h3>精准把握考点</h3>
+          <p>熟悉深圳地区中高考教材和深圳中学、宝安中学、红岭中学等名校命题特点，重点难点把握精准。</p>
+        </div>
+        <div class="feature-card reveal">
+          <div class="feature-icon">📊</div>
+          <h3>分层个性教学</h3>
+          <p>根据学生不同阶段、不同性格与学习意愿，设计分层次教学方案，让每个孩子都有适合的节奏。</p>
+        </div>
+        <div class="feature-card reveal">
+          <div class="feature-icon">🤝</div>
+          <h3>高效沟通引导</h3>
+          <p>善于与学生沟通，营造民主和谐的学习气氛，让学生真正成为学习的主人。</p>
+        </div>
+        <div class="feature-card reveal">
+          <div class="feature-icon">🧠</div>
+          <h3>注重思维培养</h3>
+          <p>不止讲解题目，更注重知识形成与探究过程中经验、方法的积累，引导学生多角度思考。</p>
+        </div>
+        <div class="feature-card reveal">
+          <div class="feature-icon">📈</div>
+          <h3>培优补差双长</h3>
+          <p>既擅长冲刺高分、冲刺四大八大，也擅长帮助基础薄弱学生建立信心、稳步提分。</p>
+        </div>
+        <div class="feature-card reveal">
+          <div class="feature-icon">💡</div>
+          <h3>激发学习兴趣</h3>
+          <p>从学生意愿出发，通过思路点拨与成就感建立，持续激发数学学习的内驱力。</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Achievements -->
+  <section class="achievements section" id="achievements">
+    <div class="container">
+      <div class="reveal">
+        <h2 class="section-title">教学成果</h2>
+        <p class="section-subtitle">多年一线教学沉淀，所带学生在中高考中取得显著进步。</p>
+      </div>
+      <div class="tabs reveal">
+        <button class="tab-btn active" data-tab="high">高考案例</button>
+        <button class="tab-btn" data-tab="middle">中考案例</button>
+      </div>
+
+      <div id="high" class="tab-content active">
+        <div class="cases-grid">
+          <div class="case-card reveal">
+            <div class="case-header">
+              <div>
+                <div class="case-name">李* 同学</div>
+                <div class="case-school">宝中文科零班</div>
+              </div>
+              <span class="case-tag tag-high">高考</span>
+            </div>
+            <div class="case-progress">
+              <div class="case-progress-label"><span>辅导前</span><span>80-90 分</span></div>
+              <div class="case-progress-bar"><div class="case-progress-fill" data-width="55%"></div></div>
+            </div>
+            <div class="case-progress">
+              <div class="case-progress-label"><span>高考</span><span>115 分</span></div>
+              <div class="case-progress-bar"><div class="case-progress-fill" data-width="92%"></div></div>
+            </div>
+            <div class="case-result">
+              <div class="case-result-item"><div class="val">633</div><div class="lbl">总分</div></div>
+              <div class="case-result-item"><div class="val">北京外国语</div><div class="lbl">录取院校</div></div>
+            </div>
+          </div>
+
+          <div class="case-card reveal">
+            <div class="case-header">
+              <div>
+                <div class="case-name">刘*深 同学</div>
+                <div class="case-school">美术艺术生</div>
+              </div>
+              <span class="case-tag tag-high">高考</span>
+            </div>
+            <div class="case-progress">
+              <div class="case-progress-label"><span>辅导前</span><span>20-30 分</span></div>
+              <div class="case-progress-bar"><div class="case-progress-fill" data-width="18%"></div></div>
+            </div>
+            <div class="case-progress">
+              <div class="case-progress-label"><span>高考</span><span>63 分</span></div>
+              <div class="case-progress-bar"><div class="case-progress-fill" data-width="42%"></div></div>
+            </div>
+            <div class="case-result">
+              <div class="case-result-item"><div class="val">522</div><div class="lbl">总分</div></div>
+              <div class="case-result-item"><div class="val">艺术生上岸</div><div class="lbl">成果</div></div>
+            </div>
+          </div>
+
+          <div class="case-card reveal">
+            <div class="case-header">
+              <div>
+                <div class="case-name">张*曦 同学</div>
+                <div class="case-school">深中高中部</div>
+              </div>
+              <span class="case-tag tag-high">高考</span>
+            </div>
+            <div class="case-progress">
+              <div class="case-progress-label"><span>2024 高考数学</span><span>121 分</span></div>
+              <div class="case-progress-bar"><div class="case-progress-fill" data-width="97%"></div></div>
+            </div>
+            <div class="case-result">
+              <div class="case-result-item"><div class="val">651</div><div class="lbl">总分</div></div>
+              <div class="case-result-item"><div class="val">东南大学</div><div class="lbl">录取院校</div></div>
+            </div>
+          </div>
+
+          <div class="case-card reveal">
+            <div class="case-header">
+              <div>
+                <div class="case-name">唐*轩 同学</div>
+                <div class="case-school">中科附高</div>
+              </div>
+              <span class="case-tag tag-high">高考</span>
+            </div>
+            <div class="case-progress">
+              <div class="case-progress-label"><span>2024 高考数学</span><span>115 分</span></div>
+              <div class="case-progress-bar"><div class="case-progress-fill" data-width="92%"></div></div>
+            </div>
+            <div class="case-result">
+              <div class="case-result-item"><div class="val">637</div><div class="lbl">总分</div></div>
+              <div class="case-result-item"><div class="val">深圳理工</div><div class="lbl">录取院校</div></div>
+            </div>
+          </div>
+
+          <div class="case-card reveal">
+            <div class="case-header">
+              <div>
+                <div class="case-name">郭*漫 同学</div>
+                <div class="case-school">深中高中部</div>
+              </div>
+              <span class="case-tag tag-high">高考</span>
+            </div>
+            <div class="case-progress">
+              <div class="case-progress-label"><span>2024 高考数学</span><span>105 分</span></div>
+              <div class="case-progress-bar"><div class="case-progress-fill" data-width="84%"></div></div>
+            </div>
+            <div class="case-result">
+              <div class="case-result-item"><div class="val">605</div><div class="lbl">总分</div></div>
+              <div class="case-result-item"><div class="val">南方医科大学</div><div class="lbl">录取院校</div></div>
+            </div>
+          </div>
+
+          <div class="case-card reveal">
+            <div class="case-header">
+              <div>
+                <div class="case-name">牛*儒 同学</div>
+                <div class="case-school">育才高中</div>
+              </div>
+              <span class="case-tag tag-high">高考</span>
+            </div>
+            <div class="case-progress">
+              <div class="case-progress-label"><span>2024 高考数学</span><span>101 分</span></div>
+              <div class="case-progress-bar"><div class="case-progress-fill" data-width="81%"></div></div>
+            </div>
+            <div class="case-result">
+              <div class="case-result-item"><div class="val">585</div><div class="lbl">总分</div></div>
+              <div class="case-result-item"><div class="val">广东工业大学</div><div class="lbl">录取院校</div></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div id="middle" class="tab-content">
+        <div class="cases-grid">
+          <div class="case-card reveal">
+            <div class="case-header">
+              <div>
+                <div class="case-name">王*心 同学</div>
+                <div class="case-school">麒麟中学</div>
+              </div>
+              <span class="case-tag tag-middle">中考</span>
+            </div>
+            <div class="case-progress">
+              <div class="case-progress-label"><span>辅导前</span><span>80+ 分</span></div>
+              <div class="case-progress-bar"><div class="case-progress-fill" data-width="70%"></div></div>
+            </div>
+            <div class="case-progress">
+              <div class="case-progress-label"><span>中考数学</span><span>92 分</span></div>
+              <div class="case-progress-bar"><div class="case-progress-fill" data-width="95%"></div></div>
+            </div>
+            <div class="case-result">
+              <div class="case-result-item"><div class="val">92</div><div class="lbl">中考数学</div></div>
+              <div class="case-result-item"><div class="val">深圳中学</div><div class="lbl">考入</div></div>
+            </div>
+          </div>
+
+          <div class="case-card reveal">
+            <div class="case-header">
+              <div>
+                <div class="case-name">黄*豪 同学</div>
+                <div class="case-school">南海中学</div>
+              </div>
+              <span class="case-tag tag-middle">中考</span>
+            </div>
+            <div class="case-progress">
+              <div class="case-progress-label"><span>辅导前</span><span>85 分左右</span></div>
+              <div class="case-progress-bar"><div class="case-progress-fill" data-width="75%"></div></div>
+            </div>
+            <div class="case-progress">
+              <div class="case-progress-label"><span>中考数学</span><span>98 分</span></div>
+              <div class="case-progress-bar"><div class="case-progress-fill" data-width="98%"></div></div>
+            </div>
+            <div class="case-result">
+              <div class="case-result-item"><div class="val">98</div><div class="lbl">中考数学</div></div>
+              <div class="case-result-item"><div class="val">深圳中学</div><div class="lbl">考入</div></div>
+            </div>
+          </div>
+
+          <div class="case-card reveal">
+            <div class="case-header">
+              <div>
+                <div class="case-name">张*曦 同学</div>
+                <div class="case-school">深中 3+2 体系</div>
+              </div>
+              <span class="case-tag tag-middle">中考</span>
+            </div>
+            <div class="case-progress">
+              <div class="case-progress-label"><span>辅导前</span><span>85-90 分</span></div>
+              <div class="case-progress-bar"><div class="case-progress-fill" data-width="82%"></div></div>
+            </div>
+            <div class="case-progress">
+              <div class="case-progress-label"><span>中考数学</span><span>98 分</span></div>
+              <div class="case-progress-bar"><div class="case-progress-fill" data-width="98%"></div></div>
+            </div>
+            <div class="case-result">
+              <div class="case-result-item"><div class="val">98</div><div class="lbl">中考数学</div></div>
+              <div class="case-result-item"><div class="val">深圳中学</div><div class="lbl">考入</div></div>
+            </div>
+          </div>
+
+          <div class="case-card reveal">
+            <div class="case-header">
+              <div>
+                <div class="case-name">李* 同学</div>
+                <div class="case-school">宝安中学初中部</div>
+              </div>
+              <span class="case-tag tag-middle">中考</span>
+            </div>
+            <div class="case-progress">
+              <div class="case-progress-label"><span>辅导前</span><span>75-80 分</span></div>
+              <div class="case-progress-bar"><div class="case-progress-fill" data-width="68%"></div></div>
+            </div>
+            <div class="case-progress">
+              <div class="case-progress-label"><span>中考数学</span><span>91 分</span></div>
+              <div class="case-progress-bar"><div class="case-progress-fill" data-width="94%"></div></div>
+            </div>
+            <div class="case-result">
+              <div class="case-result-item"><div class="val">91</div><div class="lbl">中考数学</div></div>
+              <div class="case-result-item"><div class="val">宝安中学</div><div class="lbl">考入</div></div>
+            </div>
+          </div>
+
+          <div class="case-card reveal">
+            <div class="case-header">
+              <div>
+                <div class="case-name">杨*婷 同学</div>
+                <div class="case-school">麒麟中学</div>
+              </div>
+              <span class="case-tag tag-middle">中考</span>
+            </div>
+            <div class="case-progress">
+              <div class="case-progress-label"><span>辅导前</span><span>不及格</span></div>
+              <div class="case-progress-bar"><div class="case-progress-fill" data-width="35%"></div></div>
+            </div>
+            <div class="case-progress">
+              <div class="case-progress-label"><span>中考数学</span><span>77 分</span></div>
+              <div class="case-progress-bar"><div class="case-progress-fill" data-width="78%"></div></div>
+            </div>
+            <div class="case-result">
+              <div class="case-result-item"><div class="val">77</div><div class="lbl">中考数学</div></div>
+              <div class="case-result-item"><div class="val">深外龙华部</div><div class="lbl">考入</div></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Testimonials -->
+  <section class="testimonials section" id="testimonials">
+    <div class="container">
+      <div class="reveal">
+        <h2 class="section-title">家长反馈</h2>
+        <p class="section-subtitle">真实的进步，来自家长与学生的共同认可。</p>
+      </div>
+      <div class="testimonial-grid">
+        <div class="testimonial-image reveal">
+          <img src="assets/feedback.jpg" alt="家长微信反馈截图" />
+        </div>
+        <div class="testimonial-content">
+          <div class="quote-card reveal">
+            <p>"这次二阶段考考得还不错呢，班排第一，年排 50。我都有点不敢相信，想着大概率能进前 200，结果进了前 100。"</p>
+            <div class="quote-author">
+              <div class="quote-author-avatar">张</div>
+              <div class="quote-author-info">
+                <div class="name">张铭曦妈妈</div>
+                <div class="role">2024年4月反馈</div>
+              </div>
+            </div>
+          </div>
+          <div class="achievement-highlights reveal">
+            <div class="highlight-box">
+              <div class="num">四大八大</div>
+              <div class="txt">众多中考生考入</div>
+            </div>
+            <div class="highlight-box">
+              <div class="num">985/211</div>
+              <div class="txt">高考生重点院校</div>
+            </div>
+            <div class="highlight-box">
+              <div class="num">显著</div>
+              <div class="txt">基础薄弱生提分</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Contact -->
+  <section class="contact section" id="contact">
+    <div class="container">
+      <div class="contact-grid">
+        <div class="contact-content reveal">
+          <h2>准备好让孩子<span>爱上数学</span>了吗？</h2>
+          <p>一次沟通，了解孩子的学习现状；一次试听，感受适合的教学节奏。欢迎家长预约咨询。</p>
+          <div class="contact-methods">
+            <a href="tel:15014064927" class="contact-method">
+              <div class="icon">📞</div>
+              <div>
+                <strong>15014064927</strong>
+                <span>点击直接拨打</span>
+              </div>
+            </a>
+            <div class="contact-method">
+              <div class="icon">📍</div>
+              <div>
+                <strong>深圳市南山区</strong>
+                <span>大新地铁口附近</span>
+              </div>
+            </div>
+            <div class="contact-method">
+              <div class="icon">📚</div>
+              <div>
+                <strong>授课范围</strong>
+                <span>初中数学 / 高中数学 / 中高考冲刺</span>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="contact-visual reveal">
+          <div class="contact-card">
+            <img src="assets/photo.jpg" alt="冯艳老师" />
+            <h3>冯艳老师</h3>
+            <p>深圳初高中数学培训 · 原学而思老师</p>
+            <a href="tel:15014064927" class="cta-btn">
+              <span>📞</span> 预约试听
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer>
+    <div class="container">
+      <p>© 2026 冯艳老师 · 深圳初高中数学培训 · 联系电话 15014064927</p>
+    </div>
+  </footer>
+
+  <!-- Back to Top -->
+  <button class="back-to-top" id="backToTop" aria-label="回到顶部">
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+      <path d="M12 19V5M5 12l7-7 7 7" />
+    </svg>
+  </button>
+
+  <script>
+    // Navbar scroll effect
+    const navbar = document.getElementById('navbar');
+    window.addEventListener('scroll', () => {
+      navbar.classList.toggle('scrolled', window.scrollY > 50);
+    });
+
+    // Mobile menu
+    const menuToggle = document.getElementById('menuToggle');
+    const navLinks = document.getElementById('navLinks');
+    menuToggle.addEventListener('click', () => {
+      menuToggle.classList.toggle('open');
+      navLinks.classList.toggle('open');
+    });
+    document.querySelectorAll('.nav-links a').forEach(link => {
+      link.addEventListener('click', () => {
+        menuToggle.classList.remove('open');
+        navLinks.classList.remove('open');
+      });
+    });
+
+    // Reveal on scroll
+    const revealElements = document.querySelectorAll('.reveal');
+    const revealObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+          revealObserver.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.12, rootMargin: '0px 0px -50px 0px' });
+    revealElements.forEach(el => revealObserver.observe(el));
+
+    // Animated counters
+    const counters = document.querySelectorAll('.stat-item .number');
+    const counterObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          const target = parseInt(entry.target.dataset.target);
+          const duration = 1500;
+          const start = performance.now();
+          const animate = (now) => {
+            const progress = Math.min((now - start) / duration, 1);
+            const ease = 1 - Math.pow(1 - progress, 3);
+            entry.target.textContent = Math.floor(ease * target);
+            if (progress < 1) requestAnimationFrame(animate);
+            else entry.target.textContent = target;
+          };
+          requestAnimationFrame(animate);
+          counterObserver.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.5 });
+    counters.forEach(c => counterObserver.observe(c));
+
+    // Progress bars in achievement cards
+    const progressBars = document.querySelectorAll('.case-progress-fill');
+    const progressObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.style.width = entry.target.dataset.width;
+          progressObserver.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.3 });
+    progressBars.forEach(bar => progressObserver.observe(bar));
+
+    // Tabs
+    const tabBtns = document.querySelectorAll('.tab-btn');
+    const tabContents = document.querySelectorAll('.tab-content');
+    tabBtns.forEach(btn => {
+      btn.addEventListener('click', () => {
+        tabBtns.forEach(b => b.classList.remove('active'));
+        tabContents.forEach(c => c.classList.remove('active'));
+        btn.classList.add('active');
+        document.getElementById(btn.dataset.tab).classList.add('active');
+        // Re-trigger progress bars for newly visible tab
+        setTimeout(() => {
+          document.querySelectorAll('.tab-content.active .case-progress-fill').forEach(bar => {
+            bar.style.width = '0';
+            setTimeout(() => bar.style.width = bar.dataset.width, 50);
+          });
+        }, 100);
+      });
+    });
+
+    // Back to top
+    const backToTop = document.getElementById('backToTop');
+    window.addEventListener('scroll', () => {
+      backToTop.classList.toggle('visible', window.scrollY > 500);
+    });
+    backToTop.addEventListener('click', () => {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+  </script>
+</body>
+</html>
