@@ -1549,7 +1549,7 @@
           深圳 · 小初高数学培优
         </div>
         <h1>冯艳 <span>老师</span></h1>
-        <p class="hero-title-sub">原学而思数学老师 · 12年一线教学经验</p>
+        <p class="hero-title-sub">原学而思数学老师 · <span class="auto-year" data-auto-year="career">12</span>年一线教学经验</p>
         <p class="hero-desc">
           专注深圳中高考数学，熟悉本地教材与名校考点。擅长因材施教，
           从学生意愿与个体需要出发，让每个孩子找到属于自己的数学节奏。
@@ -1570,7 +1570,7 @@
         <div class="floating-card fc-1">
           <div class="icon gold">🏆</div>
           <div>
-            <span class="num">12年</span>
+            <span class="num"><span class="auto-year" data-auto-year="career">12</span>年</span>
             <span class="label">教学经验</span>
           </div>
         </div>
@@ -1584,7 +1584,7 @@
         <div class="floating-card fc-3">
           <div class="icon teal">🎓</div>
           <div>
-            <span class="num">11届</span>
+            <span class="num"><span class="auto-year" data-auto-year="junior">11</span>届</span>
             <span class="label">毕业班带班</span>
           </div>
         </div>
@@ -1603,15 +1603,15 @@
     <div class="stats-strip reveal">
       <div class="stats-grid">
         <div class="stat-item">
-          <div class="number" data-target="12">0</div>
+          <div class="number" data-target="12" data-auto-year="career">0</div>
           <div class="label">年教学经验</div>
         </div>
         <div class="stat-item">
-          <div class="number" data-target="12">0</div>
+          <div class="number" data-target="12" data-auto-year="junior">0</div>
           <div class="label">届初三毕业班</div>
         </div>
         <div class="stat-item">
-          <div class="number" data-target="7">0</div>
+          <div class="number" data-target="7" data-auto-year="senior">0</div>
           <div class="label">年以上高三带班</div>
         </div>
         <div class="stat-item">
@@ -1633,9 +1633,9 @@
           <div class="poster-title">
             <div class="poster-label">深圳 · 小初高数学培优</div>
             <h2>冯艳老师</h2>
-            <p class="poster-role">原学而思数学老师 · 12年一线教学经验</p>
+            <p class="poster-role">原学而思数学老师 · <span class="auto-year" data-auto-year="career">12</span>年一线教学经验</p>
             <div class="poster-tags">
-              <span>12年小初高数学教学经验</span>
+              <span><span class="auto-year" data-auto-year="career">12</span>年小初高数学教学经验</span>
               <span>原学而思数学老师</span>
               <span>小组课教师</span>
             </div>
@@ -2127,6 +2127,26 @@
   </div>
 
   <script>
+    // Auto-update year-based numbers based on current year
+    // Base years inferred from 2026 values: 12/12/7 => 2014/2014/2019
+    (function updateAutoYears() {
+      const currentYear = new Date().getFullYear();
+      const autoYears = {
+        career: currentYear - 2014, // years of teaching experience
+        junior: currentYear - 2014, // junior high graduation classes
+        senior: currentYear - 2019  // senior high teaching years
+      };
+      document.querySelectorAll('[data-auto-year]').forEach(el => {
+        const key = el.dataset.autoYear;
+        if (autoYears[key] === undefined) return;
+        if (el.classList.contains('number')) {
+          el.dataset.target = autoYears[key];
+        } else {
+          el.textContent = autoYears[key];
+        }
+      });
+    })();
+
     // Navbar scroll effect
     const navbar = document.getElementById('navbar');
     window.addEventListener('scroll', () => {
