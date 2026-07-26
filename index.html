@@ -1352,8 +1352,6 @@
 
       .hero-visual {
         order: -1;
-        flex-direction: column;
-        align-items: center;
       }
 
       .photo-frame {
@@ -1361,38 +1359,30 @@
         transform: none;
       }
 
-      .hero-cards {
-        position: static;
-        display: flex;
-        flex-wrap: wrap;
-        justify-content: center;
-        gap: 10px;
-        margin-top: 20px;
-        width: 100%;
-      }
-
+      /* 移动端：卡片缩小并收进照片框内边角，保留桌面飘卡观感 */
       .floating-card {
-        position: static;
-        display: flex;
-        width: auto;
+        padding: 7px 10px;
+        gap: 6px;
+        font-size: 0.62rem;
+        border-radius: 14px;
         max-width: 46%;
-        padding: 9px 14px;
-        gap: 8px;
-        border-radius: 999px;
-        font-size: 0.78rem;
         animation: none;
-        box-shadow: 0 8px 24px -10px rgba(0, 0, 0, 0.25);
+        box-shadow: 0 6px 16px -8px rgba(0, 0, 0, 0.35);
       }
 
       .floating-card .icon {
-        width: 30px;
-        height: 30px;
-        font-size: 0.95rem;
-        border-radius: 50%;
+        width: 22px;
+        height: 22px;
+        font-size: 0.7rem;
+        border-radius: 7px;
       }
 
-      .floating-card .num { font-size: 1.05rem; }
-      .floating-card .label { font-size: 0.68rem; }
+      .floating-card .num { font-size: 0.85rem; }
+      .floating-card .label { font-size: 0.55rem; line-height: 1.2; }
+
+      .fc-1 { top: 4%; right: 3%; }
+      .fc-2 { bottom: 4%; left: 3%; }
+      .fc-3 { bottom: 4%; right: 3%; }
 
       .stats-grid {
         grid-template-columns: repeat(2, 1fr);
