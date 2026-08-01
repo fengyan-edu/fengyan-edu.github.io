@@ -1842,6 +1842,61 @@
       transform: translateY(-1px);
     }
 
+    /* ===== Map Modal 选项 ===== */
+    .map-options {
+      display: grid;
+      gap: 10px;
+      margin-bottom: 16px;
+      text-align: left;
+    }
+
+    .map-option {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding: 12px 14px;
+      border: 1px solid var(--border);
+      border-radius: var(--radius-sm);
+      text-decoration: none;
+      color: var(--text);
+      transition: var(--transition);
+      background: var(--surface);
+    }
+
+    .map-option:hover {
+      border-color: var(--primary-light);
+      background: #f8fafc;
+      transform: translateX(4px);
+    }
+
+    .map-option-icon {
+      width: 40px;
+      height: 40px;
+      border-radius: 10px;
+      display: grid;
+      place-items: center;
+      font-size: 1.15rem;
+      font-weight: 800;
+      color: white;
+      flex-shrink: 0;
+    }
+
+    .map-option-icon.amap { background: #2a6cf4; }
+    .map-option-icon.tencent { background: #0a9c8c; }
+    .map-option-icon.baidu { background: #2a3bd4; }
+
+    .map-option-name {
+      font-weight: 700;
+      font-size: 1rem;
+    }
+
+    .map-option-hint {
+      margin-left: auto;
+      font-size: 0.8rem;
+      color: var(--text-muted);
+      white-space: nowrap;
+    }
+
     /* ===== Footer Phone ===== */
     .footer-phone {
       color: rgba(255, 255, 255, 0.85);
@@ -2483,13 +2538,13 @@
                 <span>点击查看二维码 · 长按识别添加</span>
               </div>
             </button>
-            <div class="contact-method">
+            <button type="button" class="contact-method contact-qr-trigger" id="mapTrigger" aria-haspopup="dialog" aria-controls="mapModal" data-track="contact_map">
               <div class="icon">📍</div>
               <div>
                 <strong>深圳市南山区</strong>
-                <span>大新地铁口附近</span>
+                <span>大新地铁口附近 · 点击查看地图导航</span>
               </div>
-            </div>
+            </button>
             <div class="contact-method">
               <div class="icon">📚</div>
               <div>
@@ -2557,6 +2612,33 @@
       <a href="tel:15014064927" class="qr-modal-call" data-track="qr_call">
         <span>📞</span> 没加微信？直接拨打
       </a>
+    </div>
+  </div>
+
+  <!-- Map Modal -->
+  <div class="qr-modal" id="mapModal" role="dialog" aria-modal="true" aria-labelledby="mapModalTitle" aria-describedby="mapModalDesc">
+    <div class="qr-modal-card map-modal-card">
+      <button class="qr-modal-close" id="mapClose" aria-label="关闭地图选择弹窗" type="button">&times;</button>
+      <h3 id="mapModalTitle">选择地图导航</h3>
+      <p id="mapModalDesc">深圳市南山区 · 大新地铁口附近</p>
+      <div class="map-options">
+        <a class="map-option" href="https://uri.amap.com/search?keyword=%E5%A4%A7%E6%96%B0%E5%9C%B0%E9%93%81%E7%AB%99" target="_blank" rel="noopener noreferrer" data-track="map_amap">
+          <span class="map-option-icon amap">高</span>
+          <span class="map-option-name">高德地图</span>
+          <span class="map-option-hint">打开高德 App</span>
+        </a>
+        <a class="map-option" href="https://apis.map.qq.com/uri/v1/search?keyword=%E5%A4%A7%E6%96%B0%E5%9C%B0%E9%93%81%E7%AB%99" target="_blank" rel="noopener noreferrer" data-track="map_tencent">
+          <span class="map-option-icon tencent">腾</span>
+          <span class="map-option-name">腾讯地图</span>
+          <span class="map-option-hint">微信内自动引导小程序</span>
+        </a>
+        <a class="map-option" href="https://map.baidu.com/search/%E5%A4%A7%E6%96%B0%E5%9C%B0%E9%93%81%E7%AB%99" target="_blank" rel="noopener noreferrer" data-track="map_baidu">
+          <span class="map-option-icon baidu">百</span>
+          <span class="map-option-name">百度地图</span>
+          <span class="map-option-hint">打开百度地图 App</span>
+        </a>
+      </div>
+      <p class="qr-modal-tip">未安装 App 时自动打开网页版地图</p>
     </div>
   </div>
 
@@ -2779,10 +2861,38 @@
       if (e.target === qrModal) closeQR();
     });
 
+    // ============ 地图选择弹窗 ============
+    const mapTrigger = document.getElementById('mapTrigger');
+    const mapModal = document.getElementById('mapModal');
+    const mapClose = document.getElementById('mapClose');
+    let lastFocusBeforeMap = null;
+
+    function openMap() {
+      lastFocusBeforeMap = document.activeElement;
+      mapModal.classList.add('open');
+      trapFocus(mapModal);
+      setTimeout(() => mapClose.focus(), 0);
+    }
+    function closeMap() {
+      mapModal.classList.remove('open');
+      releaseFocus(mapModal);
+      if (lastFocusBeforeMap && lastFocusBeforeMap.focus) lastFocusBeforeMap.focus();
+    }
+    if (mapTrigger) {
+      mapTrigger.addEventListener('click', openMap);
+    }
+    if (mapClose) {
+      mapClose.addEventListener('click', closeMap);
+    }
+    mapModal.addEventListener('click', (e) => {
+      if (e.target === mapModal) closeMap();
+    });
+
     // ============ 全局 Escape + 弹窗互斥 ============
     document.addEventListener('keydown', (e) => {
       if (e.key !== 'Escape') return;
       if (qrModal.classList.contains('open')) closeQR();
+      else if (mapModal.classList.contains('open')) closeMap();
       else if (lightbox.classList.contains('open')) closeLightbox();
     });
 
