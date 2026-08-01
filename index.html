@@ -1874,9 +1874,15 @@
     .qr-modal-close:focus-visible,
     .floating-phone:focus-visible,
     .back-to-top:focus-visible,
-    .menu-toggle:focus-visible {
+    .menu-toggle:focus-visible,
+    .feedback-image:focus-visible,
+    .contact-qr-trigger:focus-visible {
       outline: 3px solid var(--accent-light);
       outline-offset: 2px;
+    }
+
+    .feedback-image:focus-visible {
+      border-radius: var(--radius-sm);
     }
   </style>
 </head>
@@ -2389,19 +2395,19 @@
         <p class="section-subtitle">真实的进步，来自家长与学生的共同认可。</p>
       </div>
       <div class="feedback-gallery reveal">
-        <div class="feedback-image">
+        <div class="feedback-image" tabindex="0" role="button" aria-label="点击查看家长反馈大图">
           <picture>
             <source srcset="assets/feedback.webp" type="image/webp" />
             <img src="assets/feedback.jpg" alt="家长微信反馈截图 1" width="1170" height="2532" loading="lazy" decoding="async" />
           </picture>
         </div>
-        <div class="feedback-image">
+        <div class="feedback-image" tabindex="0" role="button" aria-label="点击查看家长反馈大图">
           <picture>
             <source srcset="assets/feedback2.webp" type="image/webp" />
             <img src="assets/feedback2.jpg" alt="家长微信反馈截图 2" width="1170" height="2532" loading="lazy" decoding="async" />
           </picture>
         </div>
-        <div class="feedback-image">
+        <div class="feedback-image" tabindex="0" role="button" aria-label="点击查看学生反馈大图">
           <picture>
             <source srcset="assets/feedback3.webp" type="image/webp" />
             <img src="assets/feedback3.jpg" alt="学生微信反馈截图" width="1170" height="2201" loading="lazy" decoding="async" />
@@ -2768,16 +2774,17 @@
           ts: Date.now(),
           path: location.pathname,
           ref: document.referrer || '(direct)',
-          ua: navigator.userAgent.split(' ').slice(-1)[0], // 简化版
+          ua: (navigator.userAgent || '').split(' ').slice(-1)[0] || 'unknown',
           ...(payload || {}),
         };
         // 1. 调试模式输出（开发自查）
         if (window.location.search.includes('debug=track')) {
           console.log('[track]', event);
         }
-        // 2. 单会话去重（避免重复触发）
-        if (logged.has(eventName)) return;
-        logged.add(eventName);
+        // 2. 去重（按 name + payload 复合键，避免同类事件丢记录）
+        const key = eventName + (payload && payload.depth != null ? '_' + payload.depth : '');
+        if (logged.has(key)) return;
+        logged.add(key);
         // 3. 上报占位：用户后续可在此处接入百度统计 / 自建 beacon
         // navigator.sendBeacon('/api/track', JSON.stringify(event));
       }
